@@ -127,7 +127,7 @@ part1 = tk.Frame(root, bd=2, bg = Navy_Blue)
 part1.grid(row=0, column=0, padx=5, pady=5, sticky='nw')
 
 part2 = tk.Frame(root, bd=2, bg = Navy_Blue)
-part2.grid(row=0, column=1, padx=5, pady=5, sticky='nsew')
+part2.grid(row=0, column=1,rowspan=2, padx=5, pady=5, sticky='nsew')
 
 part3 = tk.Frame(root, bd=2, bg = Navy_Blue)
 part3.grid(row=1, column=0, padx=5, pady=5, sticky='w')
