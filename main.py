@@ -107,26 +107,33 @@ def display_on_map():
 
 
 
+Navy_Blue = "#1a2b43"
+Deep_Blue = '#1e2a47'
+Dark_Slate_Blue = '#3c4b6c'
+
+
 #making the GUI
 root = tk.Tk()
 root.title("Mosques Management System")
+icon = tk.PhotoImage(file = 'icon.png')
+root.iconphoto(True, icon)
+root.resizable(False, False)
+root.config(bg=Navy_Blue)
+
 
 
 #making the frames 
-part1 = tk.Frame(root, bd=2)
+part1 = tk.Frame(root, bd=2, bg = Navy_Blue)
 part1.grid(row=0, column=0, padx=5, pady=5, sticky='nw')
 
-part2 = tk.Frame(root, bd=2)
+part2 = tk.Frame(root, bd=2, bg = Navy_Blue)
 part2.grid(row=0, column=1, padx=5, pady=5, sticky='nsew')
 
-part3 = tk.Frame(root, bd=2)
+part3 = tk.Frame(root, bd=2, bg = Navy_Blue)
 part3.grid(row=1, column=0, padx=5, pady=5, sticky='w')
 
-part4 = tk.Frame(part3)
+part4 = tk.Frame(part3, bg = Navy_Blue)
 part4.grid(row=1, column=2, padx=5, pady=5, sticky='e')
-
-root.grid_columnconfigure(1, weight=1)
-root.grid_rowconfigure(0, weight=1)
 
 #making part 1
 labels = ['ID', 'Name', 'Type', 'Address', 'Coordinates', 'Imam_name']
@@ -134,33 +141,91 @@ entries = {}
 type_options = ["Jami", "Musalla", "Masjid", "Other"]
 
 for i, label in enumerate(labels):
-    tk.Label(part1, text=label).grid(row=i, column=0, padx=5, pady=2, sticky='w')
+    tk.Label(part1, 
+             text=label, 
+             bg = Navy_Blue, 
+             foreground='white').grid(row=i, column=0, padx=5, pady=2, sticky='w')
     if label == 'Type':
         var = tk.StringVar(root)
         var.set(type_options[0])
-        dropdown = tk.OptionMenu(part1, var, *type_options)
+        dropdown = tk.OptionMenu(part1,
+                                  var,
+                                  *type_options)
+        dropdown.config(bg=Deep_Blue,
+                        foreground='white',
+                        activebackground=Deep_Blue,
+                        activeforeground='white',
+                        highlightbackground=Deep_Blue,
+                        width=15)
         dropdown.grid(row=i, column=1, padx=5, pady=2, sticky='we')
         entries[label] = var
     else:
-        entry = tk.Entry(part1)
+        entry = tk.Entry(part1, 
+                         bg=Deep_Blue, 
+                         foreground='white')
         entry.grid(row=i, column=1, padx=5, pady=2)
         entries[label] = entry
 
 #making Part 2 
-listbox = tk.Listbox(part2, width=80)
+listbox = tk.Listbox(part2, width=50)
 listbox.pack(fill='both', expand=True)
 
 
 
 #making Part 3
-tk.Button(part3, text="Display All", width=15, command=display_all).grid(row=0, column=0, padx=5, pady=2)
-tk.Button(part3, text="Search By Name", width=15, command=search_by_name).grid(row=0, column=1, padx=5, pady=2)
-tk.Button(part3, text="Update Entry", width=15, command=update_entry).grid(row=0, column=2, padx=5, pady=2)
+tk.Button(part3, 
+           text="Display All",
+           foreground='white',
+           bg = Dark_Slate_Blue,
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15, 
+           command=display_all).grid(row=0, column=0, padx=5, pady=2)
 
-tk.Button(part3, text="Add Entry", width=15, command=add_entry).grid(row=1, column=0, padx=5, pady=2)
-tk.Button(part3, text="Delete entry", width=15, command=delete_entry).grid(row=1, column=1, padx=5, pady=2)
+tk.Button(part3, 
+           text="Search By Name",
+           foreground='white', 
+           bg = Dark_Slate_Blue, 
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15,
+           command=search_by_name).grid(row=0, column=1, padx=5, pady=2)
+
+tk.Button(part3, 
+           text="Update Entry",
+           foreground='white',
+           bg = Dark_Slate_Blue,
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15, 
+           command=update_entry).grid(row=0, column=2, padx=5, pady=2)
+
+tk.Button(part3,
+           text="Add Entry",
+           foreground='white',
+           bg = Dark_Slate_Blue, 
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15, 
+           command=add_entry).grid(row=1, column=0, padx=5, pady=2)
+
+tk.Button(part3, 
+           text="Delete entry",
+           foreground='white',
+           bg = Dark_Slate_Blue, 
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15, 
+           command=delete_entry).grid(row=1, column=1, padx=5, pady=2)
 
 #making Part 4
-tk.Button(part4, text="Display on Map", width=15, command=display_on_map).pack()
+tk.Button(part4, 
+           text="Display on Map",
+           foreground='white',
+           bg = Dark_Slate_Blue, 
+           activebackground=Dark_Slate_Blue,
+           activeforeground='white',
+           width=15, 
+           command=display_on_map).pack()
 
 root.mainloop()
